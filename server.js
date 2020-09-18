@@ -1,10 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
-const apiRoutes = require("./routes/apiRoutes");
-const htmlRoutes = require("./routes/htmlRoutes");
+const apiRoutes = require("./routes/apiRoute");
+const htmlRoutes = require("./routes/htmlRoute");
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
@@ -20,8 +20,8 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
     useFindAndModify: false
 });
 
-app.use(apiRoutes);
 app.use(htmlRoutes);
+app.use(apiRoutes);
 
 app.listen(PORT, () => {
     console.log(`App running on port ${PORT}!`);
